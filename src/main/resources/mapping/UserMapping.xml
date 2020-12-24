@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangtengyu.dao.UserDao">
+
+    <resultMap id="UserResultMap" type="com.liangtengyu.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="expired" jdbcType="BIT" property="expired" />
+        <result column="locked" jdbcType="BIT" property="locked" />
+        <result column="enabled" jdbcType="BIT" property="enabled" />
+        <collection property="roles" ofType="com.liangtengyu.entity.Role"   >
+            <id column="rid" jdbcType="INTEGER" property="id" />
+            <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+            <result column="remark" jdbcType="VARCHAR" property="remark" />
+            <result column="user_id" jdbcType="LONGVARCHAR" property="userId" />
+            <collection property="resources" ofType="com.liangtengyu.entity.Resource">
+                <id column="sid" jdbcType="INTEGER" property="id" />
+                <result column="resource_path" jdbcType="VARCHAR" property="resourcePath" />
+                <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
+                <result column="s_remark" jdbcType="VARCHAR" property="remark" />
+                <result column="role_id" jdbcType="LONGVARCHAR" property="roleId" />
+            </collection>
+        </collection>
+    </resultMap>
+
+
+
+
+    <select id="getUserByName" resultMap="UserResultMap">
+                       select u.*,
+                       r.id rid,r.role_name ,r.remark,r.user_id,
+                       s.id sid,s.resource_path,s.resource_name,s.remark s_remark
+                       from t_user u
+            right join   t_role r on u.id = r.user_id
+            right join t_resource s on s.role_id = r.id
+             where username = #{name}
+    </select>
+
+    <select id="getCounts" resultType="integer">
+           select count(1) from t_user where username = #{name}
+    </select>
+</mapper>
