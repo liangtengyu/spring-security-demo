@@ -1,4 +1,4 @@
-package com.liangtengyu.entity;
+package com.liangtengyu.config.authentication;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

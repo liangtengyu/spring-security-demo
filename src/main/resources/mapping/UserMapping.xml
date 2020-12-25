@@ -37,7 +37,8 @@
              where username = #{name}
     </select>
 
-    <select id="getCounts" resultType="integer">
-           select count(1) from t_user where username = #{name}
+
+    <select id="getAllResource" resultType="com.liangtengyu.entity.Resource">
+        select resource_path,resource_name from t_resource
     </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.liangtengyu.config;
+package com.liangtengyu.config.authentication;
 
 import com.liangtengyu.service.UserService;
 import lombok.extern.java.Log;

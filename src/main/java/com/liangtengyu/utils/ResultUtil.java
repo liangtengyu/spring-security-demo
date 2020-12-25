@@ -16,7 +16,7 @@ public class ResultUtil {
     }
 
     public static Result success( Object data){
-        return success("-1","请求成功",data);
+        return success("00","请求成功",data);
     }
 
 

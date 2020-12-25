@@ -3,7 +3,7 @@ package com.liangtengyu.service;
 import com.liangtengyu.dao.UserDao;
 import com.liangtengyu.entity.Resource;
 import com.liangtengyu.entity.Role;
-import com.liangtengyu.entity.UrlGrantedAuthority;
+import com.liangtengyu.config.authentication.UrlGrantedAuthority;
 import com.liangtengyu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

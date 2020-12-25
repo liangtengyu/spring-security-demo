@@ -1,6 +1,9 @@
-package com.liangtengyu.config;
+package com.liangtengyu.config.authentication;
 
+import com.liangtengyu.config.handler.AuthAccessDeniedHandler;
+import com.liangtengyu.config.handler.AuthFailedHandler;
 import com.liangtengyu.config.handler.AuthSuccessHandler;
+import com.liangtengyu.config.handler.UserLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AuthSuccessHandler authSuccessHandler;//登录成功处理器
 
+    @Autowired
+    AuthFailedHandler authFailedHandler;//登录成功处理器
+    @Autowired
+    UserLogoutSuccessHandler logoutSuccessHandler;//登录成功处理器
+
+    @Autowired
+    AuthAccessDeniedHandler accessDeniedHandler;//登录成功处理器
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.parentAuthenticationManager(myAuthenticationManager);
@@ -44,14 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //配置登录成功的自定义处理类
                 .successHandler(authSuccessHandler)
                 //配置登录失败的自定义处理类
-
+                .failureHandler(authFailedHandler)
                 .and()
                 //loginProcessingUrl用于指定前后端分离的时候调用后台注销接口的名称
                 .logout().logoutUrl("/logout")
-
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 //配置没有权限的自定义处理类
-
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                .and()
                 .cors()//新加入
                 .and()
                 .csrf().disable();// 取消跨站请求伪造防护

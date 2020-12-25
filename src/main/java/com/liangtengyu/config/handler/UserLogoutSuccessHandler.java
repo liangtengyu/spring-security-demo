@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Date: 2020/12/25 13:59
  */
 @Component
-public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
+public class UserLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         Object principal = authentication.getPrincipal();

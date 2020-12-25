@@ -1,4 +1,4 @@
-package com.liangtengyu.config;
+package com.liangtengyu.config.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
