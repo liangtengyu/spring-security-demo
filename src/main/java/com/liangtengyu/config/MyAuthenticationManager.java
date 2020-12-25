@@ -13,6 +13,12 @@ import java.util.Objects;
  * @Author: lty
  * @Date: 2020/12/24 15:45
  */
+
+/**
+ * AuthenticationManager
+ * @return 管理providers 可提供多个实现
+ * @date   2020/12/25 10:22
+ */
 @Component
 public class MyAuthenticationManager implements AuthenticationManager {
     @Autowired
