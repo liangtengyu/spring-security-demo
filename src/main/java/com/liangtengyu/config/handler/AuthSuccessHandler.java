@@ -29,6 +29,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         Object principal = authentication.getPrincipal();
         //使用json返回登录成功的用户信息
+        httpServletResponse.setContentType("application/json;charset=utf-8");
         httpServletResponse.getWriter().write(JSON.toJSONString(principal,true));
 
     }
